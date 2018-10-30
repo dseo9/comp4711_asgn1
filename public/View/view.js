@@ -18,7 +18,6 @@ for (i = 0; i < wordSize; i++) {
       inputBox.disabled = 'true';
       inputBox.id = guessWord[i]+i;
       storeId[i] = inputBox.id;
-      console.log(storeId[i])
       document.getElementById("guessingWord").appendChild(inputBox);
 }
 

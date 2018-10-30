@@ -39,15 +39,15 @@ firebase.auth().onAuthStateChanged(firebaseUser => {
         btnLogout.classList.remove('hide');
         btnLogin.classList.add('hide');
         btnSignup.classList.add('hide');
-        txtEmail.style.display=none;
-        txtPS.style.display=none;
+        txtEmail.style.display="none";
+        txtPS.style.display="none";
     } else {
         console.log("not logged in");
         btnLogout.classList.add('hide');
         btnLogin.classList.remove('hide');
         btnSignup.classList.remove('hide');
-        txtEmail.style.display=block;
-        txtPS.style.display=block;
+        txtEmail.style.display="block";
+        txtPS.style.display="block";
 
     }
 });

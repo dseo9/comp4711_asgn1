@@ -35,7 +35,7 @@ var resetBtn = document.createElement("button");
 var btnText = document.createTextNode("Play Again?");
 
 //If defaultScore value exists, replace default value with current value
-if (localStorage.getItem("saveScore") !== null) {
-    defaultScore = localStorage.getItem("saveScore");
-}
-localStorage.setItem("saveScore", defaultScore);
+// if (localStorage.getItem("saveScore") !== null) {
+//     defaultScore = localStorage.getItem("saveScore");
+// }
+// localStorage.setItem("saveScore", defaultScore);

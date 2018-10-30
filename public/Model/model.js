@@ -16,7 +16,6 @@ var definitionList = ["a form of body modification where a design is made by ins
 var randomNum = Math.floor(Math.random() * wordList.length);
 var generateWord = wordList[randomNum];
 var guessWord = generateWord.split(''); //Splits the word into characters
-console.log(guessWord);
 var wordSize = guessWord.length;
 var wordSize2 = wordSize;
 var storeId = new Array(wordSize);

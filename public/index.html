@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Hangman Game Assignment1</title>
+    <link rel="stylesheet" type="text/css" href="/bootstrap.min.css">
+    <!-- update the version number as needed -->
+    <script defer src="/__/firebase/5.5.6/firebase-app.js"></script>
+    <!-- include only the Firebase features as you need -->
+    <script defer src="/__/firebase/5.5.6/firebase-auth.js"></script>
+    <script defer src="/__/firebase/5.5.6/firebase-database.js"></script>
+    <script defer src="/__/firebase/5.5.6/firebase-messaging.js"></script>
+    <script defer src="/__/firebase/5.5.6/firebase-storage.js"></script>
+    <!-- initialize the SDK after all desired features are loaded -->
+    <script defer src="/__/firebase/init.js"></script>
+    
+    <script src="https://www.gstatic.com/firebasejs/5.5.6/firebase.js"></script>
+    <script>
+        // Initialize Firebase
+        var config = {
+            apiKey: "AIzaSyBmYdS58X9sscoUDEtIWI5yctmR2mjYOtI",
+            authDomain: "comp4711-assignment1.firebaseapp.com",
+            databaseURL: "https://comp4711-assignment1.firebaseio.com",
+            projectId: "comp4711-assignment1",
+            storageBucket: "comp4711-assignment1.appspot.com",
+            messagingSenderId: "923742976548"
+        };
+        firebase.initializeApp(config);
+    </script>
+  </head>
+
+  <body>
+   <div class="container">
+      <input id="txtEmail" type="email" placeholder="Email">
+      <input id="txtPS" type="password" placeholder="Password">
+      <button id="btnLogin" class="btn btn-action">Log in</button>
+      <button id="btnSignup" class="btn btn-secondary">Sign up</button>
+      <button id="btnLogout" class="btn btn-action hide">Log out</button>
+   </div>
+  </body>
+
+  <script src="app.js"></script>
+
+</html>

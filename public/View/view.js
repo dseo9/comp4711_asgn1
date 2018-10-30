@@ -44,11 +44,13 @@ function win() {
       // When the user clicks on <span> (x), close the modal
       span.onclick = function() {
             // reset();
+            $('#myModal').modal('hide')
       }
 
       // When the user clicks anywhere outside of the modal, close it
       window.onclick = function(event) {
         // reset();
+        $('#myModal').modal('hide')
       }
     },100);
 }
@@ -62,11 +64,13 @@ function lose() {
       // When the user clicks on <span> (x), close the modal
       span.onclick = function() {
         // reset();
+        $('#myModal').modal('hide')
       }
 
       // When the user clicks anywhere outside of the modal, close it
       window.onclick = function(event) {
         // reset();
+        $('#myModal').modal('hide')
       }
     }, 100);
 }

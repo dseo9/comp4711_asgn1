@@ -29,6 +29,8 @@ btnSignup.addEventListener('click', e => {
 
 btnLogout.addEventListener('click', e => {
     firebase.auth().signOut();
+    document.getElementById("txtEmail").value = "";
+    document.getElementById("txtPS").value = "";
 });
 
 firebase.auth().onAuthStateChanged(firebaseUser => {

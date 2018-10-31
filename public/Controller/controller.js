@@ -1,44 +1,66 @@
-//Controller: Connects the view and model
-
 //Resets the game
 function reset() {
     location.reload();
 }
 
-//Grab the element that has the id and replace content to letter
-function replace(letter, id) {
-    document.getElementById(id).innerHTML = letter;
-}
+//Add log in event
+btnLogin.addEventListener('click', e => {
+    //get email and ps
+    const email = txtEmail.value;
+    const pass = txtPassword.value;
+    const auth = firebase.auth();
+    //sign in
+    const promise = auth.signInWithEmailAndPassword(email,pass);
+    promise.catch(e => console.log(e.message));
+});
 
-function checkGuess(alphaId) {
-    if (guessWord.includes(alphaId)) {
-        for(i=0; i < wordSize; i++) {
-            var temp = storeId[i];
-            var tester = alphaId+i;
-            if (temp == tester) {
-                replace(alphaId, temp);
-                wordSize2--;
-                defaultScore++;
-                localStorage.setItem("saveScore", defaultScore);
-            }
-        }
-        document.getElementById("points").innerHTML = defaultScore;
+//Add sign up event
+btnSignup.addEventListener('click', e => {
+    //get email and ps
+    const email = txtEmail.value;
+    const pass = txtPassword.value;
+    const auth = firebase.auth();
+    //sign in
+    const promise = auth.createUserWithEmailAndPassword(email,pass);
+    promise.catch(e => console.log(e.message));    
+});
+
+//Add log out event
+btnLogout.addEventListener('click', e => {
+    firebase.auth().signOut();
+    document.getElementById("txtEmail").value = "";
+    document.getElementById("txtPS").value = "";
+});
+
+firebase.auth().onAuthStateChanged(firebaseUser => {
+    if(firebaseUser) {
+        console.log(firebaseUser);
+        btnLogout.classList.remove('hide');
+        btnLogin.classList.add('hide');
+        btnSignup.classList.add('hide');
+        txtEmail.style.display="none";
+        txtPS.style.display="none";
+
+        writeUserData(firebaseUser.uid, txtEmail.value, defaultScore);
+
     } else {
-        defaultGuessLimit--;
-        defaultScore--;
-        localStorage.setItem("saveScore", defaultScore);
-        document.getElementById("numOfGuess").innerHTML = defaultGuessLimit;
-        document.getElementById("points").innerHTML = defaultScore;
+        console.log("not logged in");
+        btnLogout.classList.add('hide');
+        btnLogin.classList.remove('hide');
+        btnSignup.classList.remove('hide');
+        txtEmail.style.display="block";
+        txtPS.style.display="block";
 
-        if (defaultGuessLimit == 0) {
-            lose();
-        }
     }
-    document.getElementById(alphaId).disabled = true;
-    document.getElementById(alphaId).style.backgroundColor = "grey";
-    document.getElementById(alphaId).style.color = "grey";
+});
 
-    if (wordSize2 == 0) {
-        win();
-    }
-}
+//Store new user's uid, email, and default score in firebase realtime database
+function writeUserData(userId, email, score) {
+    firebase.database().ref('users/' + userId).set({
+      uid: userId,
+      email: email,
+      score : score
+    });
+  }
+
+

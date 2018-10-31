@@ -59,14 +59,15 @@ function checkGuess(alphaId) {
                 replace(alphaId, temp);
                 wordSize2--;
                 defaultScore++;
-                localStorage.setItem("saveScore", defaultScore);
+                updateUserData(firebase.auth().currentUser.uid, defaultScore);
             }
         }
         document.getElementById("points").innerHTML = defaultScore;
     } else {
         defaultGuessLimit--;
         defaultScore--;
-        localStorage.setItem("saveScore", defaultScore);
+        updateUserData(firebase.auth().currentUser.uid, defaultScore);
+
         document.getElementById("numOfGuess").innerHTML = defaultGuessLimit;
         document.getElementById("points").innerHTML = defaultScore;
 

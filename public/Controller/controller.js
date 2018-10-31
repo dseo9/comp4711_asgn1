@@ -12,6 +12,8 @@ btnLogin.addEventListener('click', e => {
     //sign in
     const promise = auth.signInWithEmailAndPassword(email,pass);
     promise.catch(e => console.log(e.message));
+    //set score to user's saved score
+    document.getElementById("points").innerHTML = firebase.auth().currentUser.score;    
 });
 
 //Add sign up event
@@ -22,14 +24,14 @@ btnSignup.addEventListener('click', e => {
     const auth = firebase.auth();
     //sign in
     const promise = auth.createUserWithEmailAndPassword(email,pass);
-    promise.catch(e => console.log(e.message));    
+    promise.catch(e => console.log(e.message));
+    //set score to 0
+    document.getElementById("points").innerHTML = 0;    
 });
 
 //Add log out event
 btnLogout.addEventListener('click', e => {
     firebase.auth().signOut();
-    document.getElementById("txtEmail").value = "";
-    document.getElementById("txtPS").value = "";
 });
 
 firebase.auth().onAuthStateChanged(firebaseUser => {
@@ -40,8 +42,9 @@ firebase.auth().onAuthStateChanged(firebaseUser => {
         btnSignup.classList.add('hide');
         txtEmail.style.display="none";
         txtPS.style.display="none";
+        GameBoard.style.display="block";
 
-        writeUserData(firebaseUser.uid, txtEmail.value, defaultScore);
+        writeUserData(firebaseUser.uid, defaultScore);
 
     } else {
         console.log("not logged in");
@@ -50,17 +53,23 @@ firebase.auth().onAuthStateChanged(firebaseUser => {
         btnSignup.classList.remove('hide');
         txtEmail.style.display="block";
         txtPS.style.display="block";
-
+        GameBoard.style.display="none";
+   
     }
 });
 
 //Store new user's uid, email, and default score in firebase realtime database
-function writeUserData(userId, email, score) {
+function writeUserData(userId, score) {
     firebase.database().ref('users/' + userId).set({
       uid: userId,
-      email: email,
       score : score
     });
   }
 
-
+//Update current user's score in database
+function updateUserData(userId, score) {
+    firebase.database().ref('users/' + userId).set({
+      uid: userId,
+      score : score
+    });
+  }

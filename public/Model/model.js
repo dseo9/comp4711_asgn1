@@ -96,7 +96,21 @@ function checkGuess(alphaId) {
 document.getElementById("numOfGuess").innerHTML = defaultGuessLimit;
 
 //Displays the user's score
-// document.getElementById("points").innerHTML = defaultScore;
+function getScoreData(userId){
+    document.getElementById("points").innerHTML = defaultScore;
+
+    var jsonObj={};
+    const data = firebase.database().ref().child('users/' + userId);
+  
+    data.on('value',snap => {
+      jsonObj = JSON.stringify(snap.val(),null,2);
+      jsonObj = JSON.parse(jsonObj);
+      defaultScore =  jsonObj.score;
+      console.log(defaultScore);
+      document.getElementById("points").innerHTML = defaultScore;
+  
+    });
+}
 
 //Display message and confirm if user wants to play again
 function win() {

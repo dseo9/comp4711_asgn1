@@ -44,6 +44,7 @@ firebase.auth().onAuthStateChanged(firebaseUser => {
       txtEmail.style.display="none";
       txtPS.style.display="none";
       GameBoard.style.display="block";
+      pmsg.style.display="none"
 
       //gets the saved score for user from database and display
       getScoreData(firebaseUser.uid); 
@@ -57,6 +58,7 @@ firebase.auth().onAuthStateChanged(firebaseUser => {
       txtEmail.style.display="block";
       txtPS.style.display="block";
       GameBoard.style.display="none";
+      pmsg.style.display="block"
   }
 });
 

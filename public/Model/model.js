@@ -46,6 +46,7 @@ const btnSignup = document.getElementById('btnSignup')
 const btnLogout = document.getElementById("btnLogout");
 const ranking = document.getElementById("ranking");
 emsg = document.getElementById("emsg");
+pmsg = document.getElementById("plsLogin");
 var userScore;
 
 //Grab the element that has the id and replace content to letter

@@ -97,6 +97,7 @@ document.getElementById("numOfGuess").innerHTML = defaultGuessLimit;
 
 //Displays the user's score
 function getScoreData(userId){
+    defaultScore = 0;
     document.getElementById("points").innerHTML = defaultScore;
 
     var jsonObj={};

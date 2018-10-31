@@ -45,6 +45,7 @@ const btnLogin = document.getElementById("btnLogin");
 const btnSignup = document.getElementById('btnSignup')
 const btnLogout = document.getElementById("btnLogout");
 const ranking = document.getElementById("ranking");
+emsg = document.getElementById("emsg");
 
 //Grab the element that has the id and replace content to letter
 function replace(letter, id) {

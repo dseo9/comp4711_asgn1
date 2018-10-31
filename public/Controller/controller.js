@@ -74,7 +74,7 @@ function writeUserData(userId, score) {
 
 //Update current user's score in database
 function updateUserData(userId, score) {
-  firebase.database().ref('users/' + userId).set({
+  firebase.database().ref('users/' + userId).update({
     uid: userId,
     score : score
   });

@@ -14,8 +14,6 @@ btnLogin.addEventListener('click', e => {
   //check validation
   promise.catch(e => emsg.innerHTML = e.message);
   promise.then(e => emsg.innerHTML = "");
-  //set score to user's saved score
-  // document.getElementById("points").innerHTML = firebase.auth().currentUser.score;    
 });
 
 //Add sign up event
@@ -29,8 +27,8 @@ btnSignup.addEventListener('click', e => {
   //check validation
   promise.catch(e => emsg.innerHTML = e.message);
   promise.then(e => emsg.innerHTML = "");
-  //set score to 0
-  document.getElementById("points").innerHTML = 0;    
+
+  
 });
 
 //Add log out event
@@ -49,8 +47,9 @@ firebase.auth().onAuthStateChanged(firebaseUser => {
       txtPS.style.display="none";
       GameBoard.style.display="block";
 
-      writeUserData(firebaseUser.uid, defaultScore);
+      getScoreData(firebaseUser.uid);
 
+      
   } else {
       console.log("not logged in");
       btnLogout.classList.add('hide');
@@ -60,7 +59,6 @@ firebase.auth().onAuthStateChanged(firebaseUser => {
       txtEmail.style.display="block";
       txtPS.style.display="block";
       GameBoard.style.display="none";
- 
   }
 });
 
@@ -77,5 +75,20 @@ function updateUserData(userId, score) {
   firebase.database().ref('users/' + userId).update({
     uid: userId,
     score : score
+  });
+}
+
+function getScoreData(userId){
+  var jsonObj={};
+  const data = firebase.database().ref().child('users/' + userId);
+
+  data.on('value',snap => {
+    jsonObj = JSON.stringify(snap.val(),null,2);
+    jsonObj = JSON.parse(jsonObj);
+    console.log(jsonObj.score);
+    defaultScore =  jsonObj.score;
+    console.log(defaultScore);
+    document.getElementById("points").innerHTML = defaultScore;
+
   });
 }

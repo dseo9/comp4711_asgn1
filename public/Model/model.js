@@ -46,6 +46,7 @@ const btnSignup = document.getElementById('btnSignup')
 const btnLogout = document.getElementById("btnLogout");
 const ranking = document.getElementById("ranking");
 emsg = document.getElementById("emsg");
+var userScore;
 
 //Grab the element that has the id and replace content to letter
 function replace(letter, id) {
@@ -75,6 +76,8 @@ function checkGuess(alphaId) {
 
         if (defaultGuessLimit == 0) {
             lose();
+            //when user win saves score and its uid in database
+            writeUserData(firebase.auth().currentUser.uid, defaultScore);
         }
     }
     document.getElementById(alphaId).disabled = true;
@@ -83,6 +86,9 @@ function checkGuess(alphaId) {
 
     if (wordSize2 == 0) {
         win();
+        //when user win saves score and its uid in database
+        writeUserData(firebase.auth().currentUser.uid, defaultScore);
+
     }
 }
 
@@ -90,19 +96,17 @@ function checkGuess(alphaId) {
 document.getElementById("numOfGuess").innerHTML = defaultGuessLimit;
 
 //Displays the user's score
-document.getElementById("points").innerHTML = defaultScore;
+// document.getElementById("points").innerHTML = defaultScore;
 
 //Display message and confirm if user wants to play again
 function win() {
     window.setInterval(function() {
       modal.style.display = "block";
       popupMsg.innerHTML = "Congratulations! You guessed the word!";
-
       // When the user clicks on <span> (x), close the modal
       span.onclick = function() {
             reset();
       }
-
       // When the user clicks anywhere outside of the modal, close it
       window.onclick = function(event) {
         reset();
@@ -115,12 +119,10 @@ function lose() {
     window.setInterval(function() {
       modal.style.display = "block";
       popupMsg.innerHTML = "You lost! You used up all your guess!";
-
       // When the user clicks on <span> (x), close the modal
       span.onclick = function() {
         reset();
       }
-
       // When the user clicks anywhere outside of the modal, close it
       window.onclick = function(event) {
         reset();

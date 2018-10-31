@@ -23,7 +23,11 @@ for (var i = 0; i < alphabets.length; i++) {
   //Displays the reset button
   resetBtn.appendChild(btnText);
   document.getElementById("resetButton").appendChild(resetBtn);
-  resetBtn.onclick = function() {reset();};
+  resetBtn.onclick = function() {
+        reset();
+        //when user win saves score and its uid in database
+        writeUserData(firebase.auth().currentUser.uid, defaultScore);
+      };
   
   //Displays the word's definition
   document.getElementById("guessingWordDefinition").appendChild(getDef);

@@ -6,6 +6,8 @@
     <title>Hangman Game Assignment1</title>
 
     <link rel="stylesheet" type="text/css" href="/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="View/style.css">
 
     <!-- update the version number as needed -->
     <script defer src="/__/firebase/5.5.6/firebase-app.js"></script>
@@ -30,12 +32,7 @@
         };
         firebase.initializeApp(config);
     </script>
-
-    <!-- Combine with hangman.html -->
-    <!-- add css -->
-    <link rel="stylesheet" type="text/css" href="View/style.css">
-    <!--Add jquery library-->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+   
   </head>
 
   <body>
@@ -48,11 +45,10 @@
    </div>
 
 
-   <h1>Hangman Game<br>Guess the word!</h1>
+   <h1>Hangman Game</h1>
    <h2>Number of guesses left: </h2>
 
    <div id="numOfGuess"></div>
-   <br>
 
    <h2>Your score:</h2>
 
@@ -77,13 +73,6 @@
        <p id="popup_msg"></p>
      </div>
    </div>
-
-
-
-
-
-
-
 
   </body>
 

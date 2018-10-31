@@ -24,7 +24,7 @@ btnSignup.addEventListener('click', e => {
     const auth = firebase.auth();
     //sign in
     const promise = auth.createUserWithEmailAndPassword(email,pass);
-    promise.catch(e => console.log(e.message));
+    promise.catch(e => console.log(e.message));    
 });
 
 btnLogout.addEventListener('click', e => {
@@ -41,6 +41,9 @@ firebase.auth().onAuthStateChanged(firebaseUser => {
         btnSignup.classList.add('hide');
         txtEmail.style.display="none";
         txtPS.style.display="none";
+        
+        writeUserData(firebaseUser.uid, txtEmail.value, defaultScore);
+
     } else {
         console.log("not logged in");
         btnLogout.classList.add('hide');
@@ -51,3 +54,12 @@ firebase.auth().onAuthStateChanged(firebaseUser => {
 
     }
 });
+
+//Store new user's uid, email, and default score in firebase realtime database
+function writeUserData(userId, email, score) {
+    firebase.database().ref('users/' + userId).set({
+      uid: userId,
+      email: email,
+      score : score
+    });
+  }

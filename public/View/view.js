@@ -43,14 +43,13 @@ function win() {
 
       // When the user clicks on <span> (x), close the modal
       span.onclick = function() {
-            // reset();
-            $('#myModal').modal('hide')
+            reset();
+
       }
 
       // When the user clicks anywhere outside of the modal, close it
       window.onclick = function(event) {
-        // reset();
-        $('#myModal').modal('hide')
+        reset();
       }
     },100);
 }
@@ -59,18 +58,17 @@ function win() {
 function lose() {
     window.setInterval(function() {
       modal.style.display = "block";
+      console.log("modal");
       popupMsg.innerHTML = "You lost! You used up all your guess!";
 
       // When the user clicks on <span> (x), close the modal
       span.onclick = function() {
-        // reset();
-        $('#myModal').modal('hide')
+        reset();
       }
 
       // When the user clicks anywhere outside of the modal, close it
       window.onclick = function(event) {
-        // reset();
-        $('#myModal').modal('hide')
+        reset();
       }
     }, 100);
 }

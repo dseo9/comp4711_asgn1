@@ -40,6 +40,7 @@ firebase.auth().onAuthStateChanged(firebaseUser => {
         btnLogout.classList.remove('hide');
         btnLogin.classList.add('hide');
         btnSignup.classList.add('hide');
+        ranking.classList.remove('hide');
         txtEmail.style.display="none";
         txtPS.style.display="none";
         GameBoard.style.display="block";
@@ -51,6 +52,7 @@ firebase.auth().onAuthStateChanged(firebaseUser => {
         btnLogout.classList.add('hide');
         btnLogin.classList.remove('hide');
         btnSignup.classList.remove('hide');
+        ranking.classList.add('hide');
         txtEmail.style.display="block";
         txtPS.style.display="block";
         GameBoard.style.display="none";

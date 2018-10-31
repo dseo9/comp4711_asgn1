@@ -44,6 +44,7 @@ const txtPassword = document.getElementById('txtPS');
 const btnLogin = document.getElementById("btnLogin");
 const btnSignup = document.getElementById('btnSignup')
 const btnLogout = document.getElementById("btnLogout");
+const ranking = document.getElementById("ranking");
 
 //Grab the element that has the id and replace content to letter
 function replace(letter, id) {
@@ -99,7 +100,6 @@ function win() {
       // When the user clicks on <span> (x), close the modal
       span.onclick = function() {
             reset();
-
       }
 
       // When the user clicks anywhere outside of the modal, close it
@@ -113,7 +113,6 @@ function win() {
 function lose() {
     window.setInterval(function() {
       modal.style.display = "block";
-      console.log("modal");
       popupMsg.innerHTML = "You lost! You used up all your guess!";
 
       // When the user clicks on <span> (x), close the modal

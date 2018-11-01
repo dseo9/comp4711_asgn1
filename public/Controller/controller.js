@@ -21,12 +21,20 @@ btnSignup.addEventListener('click', e => {
   //get email and ps
   const email = txtEmail.value;
   const pass = txtPassword.value;
+  const uname = userName.value;
   const auth = firebase.auth();
   //sign in
   const promise = auth.createUserWithEmailAndPassword(email,pass);
   //check validation
   promise.catch(e => emsg.innerHTML = e.message);
-  promise.then(e => emsg.innerHTML = "");  
+  promise.then(e => {
+    emsg.innerHTML = "";
+    var user = firebase.auth().currentUser;
+    console.log(uname);
+    user.updateProfile({
+      name: uname,
+    })
+  });  
 });
 
 //Add log out event
@@ -43,6 +51,7 @@ firebase.auth().onAuthStateChanged(firebaseUser => {
       ranking.classList.remove('hide');
       txtEmail.style.display="none";
       txtPS.style.display="none";
+      userName.style.display="none";
       GameBoard.style.display="block";
       pmsg.style.display="none"
 
@@ -57,6 +66,7 @@ firebase.auth().onAuthStateChanged(firebaseUser => {
       ranking.classList.add('hide');
       txtEmail.style.display="block";
       txtPS.style.display="block";
+      userName.style.display="block";
       GameBoard.style.display="none";
       pmsg.style.display="block"
   }
@@ -66,16 +76,28 @@ firebase.auth().onAuthStateChanged(firebaseUser => {
 function writeUserData(userId, score) {
   firebase.database().ref('users/' + userId).set({
     uid: userId,
-    score : score
+    score : score,
+    name: userName.value
   });
 }
 
 //Update current user's score in database
 function updateUserData(userId, score) {
   firebase.database().ref('users/' + userId).update({
-    uid: userId,
+    // uid: userId,
     score : score
+    // name: userName.value
   });
 }
 
+//get user name
+function getUserName(userId){
+  var jsonObj={};
+  const data = firebase.database().ref().child('users/' + userId);
 
+  data.on('value',snap => {
+    jsonObj = JSON.stringify(snap.val(),null,2);
+    jsonObj = JSON.parse(jsonObj);
+    console.log(jsonObj.name);
+  });
+}

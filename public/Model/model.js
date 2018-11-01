@@ -41,6 +41,7 @@ var btnText = document.createTextNode("Play Again?");
 //Get elements for user sign up and log in
 const txtEmail = document.getElementById('txtEmail');
 const txtPassword = document.getElementById('txtPS');
+const userName = document.getElementById("userName");
 const btnLogin = document.getElementById("btnLogin");
 const btnSignup = document.getElementById('btnSignup')
 const btnLogout = document.getElementById("btnLogout");
@@ -63,14 +64,14 @@ function checkGuess(alphaId) {
                 replace(alphaId, temp);
                 wordSize2--;
                 defaultScore++;
-                updateUserData(firebase.auth().currentUser.uid, defaultScore);
+                writeUserData(firebase.auth().currentUser.uid, defaultScore);
             }
         }
         document.getElementById("points").innerHTML = defaultScore;
     } else {
         defaultGuessLimit--;
         defaultScore--;
-        updateUserData(firebase.auth().currentUser.uid, defaultScore);
+        writeUserData(firebase.auth().currentUser.uid, defaultScore);
 
         document.getElementById("numOfGuess").innerHTML = defaultGuessLimit;
         document.getElementById("points").innerHTML = defaultScore;
@@ -78,7 +79,7 @@ function checkGuess(alphaId) {
         if (defaultGuessLimit == 0) {
             lose();
             //when user win saves score and its uid in database
-            writeUserData(firebase.auth().currentUser.uid, defaultScore);
+            updateUserData(firebase.auth().currentUser.uid, defaultScore);
         }
     }
     document.getElementById(alphaId).disabled = true;
@@ -88,7 +89,7 @@ function checkGuess(alphaId) {
     if (wordSize2 == 0) {
         win();
         //when user win saves score and its uid in database
-        writeUserData(firebase.auth().currentUser.uid, defaultScore);
+        updateUserData(firebase.auth().currentUser.uid, defaultScore);
 
     }
 }

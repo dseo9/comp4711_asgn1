@@ -39,6 +39,8 @@
    <div class="container">
       <input id="txtEmail" type="email" placeholder="Email" required>
       <input id="txtPS" type="password" placeholder="Password" required>
+      <input id="userName" type="text" placeholder="User Name" required>
+
       <p id="emsg"></p>
       <button id="btnLogin" class="btn btn-action">Log in</button>
       <button id="btnSignup" class="btn btn-secondary">Sign up</button>
@@ -51,7 +53,7 @@
    <h5 id="plsLogin">*To play, please log in or sign up</h5>
 
    <div id="GameBoard">
-      <h2>Number of guesses left: </h2>
+      <h2 id="displayName">Number of guesses left: </h2>
 
       <div id="numOfGuess"></div>
 

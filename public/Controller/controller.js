@@ -40,6 +40,7 @@ btnSignup.addEventListener('click', e => {
 //Add log out event
 btnLogout.addEventListener('click', e => {
   firebase.auth().signOut();
+  reset();
 });
 
 firebase.auth().onAuthStateChanged(firebaseUser => {
@@ -89,14 +90,4 @@ function updateUserData(userId, score) {
   });
 }
 
-//get user name
-function getUserName(userId){
-  var jsonObj={};
-  const data = firebase.database().ref().child('users/' + userId);
 
-  data.on('value',snap => {
-    jsonObj = JSON.stringify(snap.val(),null,2);
-    jsonObj = JSON.parse(jsonObj);
-    console.log(jsonObj.name);
-  });
-}

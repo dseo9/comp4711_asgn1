@@ -1,4 +1,3 @@
-//get elements for ranking
 rankings = document.getElementById("rankingBoard");
 
 //get database data as json 
@@ -8,7 +7,7 @@ function getUserName(){
   
     data.on('value',snap => {
       jsonObj = JSON.stringify(snap.val(),null,2);
-      jsonObj = JSON.parse(jsonObj);
+    //   jsonObj = JSON.parse(jsonObj);
       console.log(jsonObj);
       rankings.innerHTML = jsonObj;
     });

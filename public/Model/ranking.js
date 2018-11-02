@@ -30,8 +30,20 @@ function getDataAndRank(){
           array[i].rank = rank;
       }
       console.log(array);
-
+      var tbl=$("<table/>").attr("id","mytable");
+      $("#rankingBoard").append(tbl);
+      for(var i=0;i<array.length;i++)
+      {
+          var tr="<tr>";
+          var td1="<td>"+array[i]["rank"]+"</td>";
+          var td2="<td>"+array[i]["name"]+"</td>";
+          var td3="<td>"+array[i]["score"]+"</td></tr>";
+          
+         $("#mytable").append(tr+td1+td2+td3); 
+        
+      }
     });
   }
 
   getDataAndRank();
+

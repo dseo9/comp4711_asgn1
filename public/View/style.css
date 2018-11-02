@@ -82,3 +82,6 @@ body {
 #plsLogin {
   color: crimson;
 }
+#mytable,td{
+  border:1px solid blue;
+}
